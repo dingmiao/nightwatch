@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyc.userservice.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.dyc.userservice.entity.User">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mail_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_true_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_nick_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_school_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_college_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_company_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="level" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="school_admission_year" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gender" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="avatar_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="gmt_modified" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="wx_openid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phonenumber" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, account_name, account_password, mail_address, user_true_name, user_nick_name, 
+    user_school_name, user_college_name, user_company_name, level, school_admission_year, 
+    gender, avatar_url, gmt_create, gmt_modified, wx_openid, phonenumber
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dyc.userservice.entity.User">
+    insert into user_info (id, account_name, account_password, 
+      mail_address, user_true_name, user_nick_name, 
+      user_school_name, user_college_name, user_company_name, 
+      level, school_admission_year, gender, 
+      avatar_url, gmt_create, gmt_modified, 
+      wx_openid, phonenumber)
+    values (#{id,jdbcType=BIGINT}, #{accountName,jdbcType=VARCHAR}, #{accountPassword,jdbcType=VARCHAR}, 
+      #{mailAddress,jdbcType=VARCHAR}, #{userTrueName,jdbcType=VARCHAR}, #{userNickName,jdbcType=VARCHAR}, 
+      #{userSchoolName,jdbcType=VARCHAR}, #{userCollegeName,jdbcType=VARCHAR}, #{userCompanyName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT}, #{schoolAdmissionYear,jdbcType=INTEGER}, #{gender,jdbcType=VARCHAR}, 
+      #{avatarUrl,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{wxOpenid,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dyc.userservice.entity.User">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="accountPassword != null">
+        account_password,
+      </if>
+      <if test="mailAddress != null">
+        mail_address,
+      </if>
+      <if test="userTrueName != null">
+        user_true_name,
+      </if>
+      <if test="userNickName != null">
+        user_nick_name,
+      </if>
+      <if test="userSchoolName != null">
+        user_school_name,
+      </if>
+      <if test="userCollegeName != null">
+        user_college_name,
+      </if>
+      <if test="userCompanyName != null">
+        user_company_name,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="schoolAdmissionYear != null">
+        school_admission_year,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid,
+      </if>
+      <if test="phonenumber != null">
+        phonenumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailAddress != null">
+        #{mailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userTrueName != null">
+        #{userTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchoolName != null">
+        #{userSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeName != null">
+        #{userCollegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCompanyName != null">
+        #{userCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="schoolAdmissionYear != null">
+        #{schoolAdmissionYear,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxOpenid != null">
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dyc.userservice.entity.User">
+    update user_info
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        account_password = #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailAddress != null">
+        mail_address = #{mailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userTrueName != null">
+        user_true_name = #{userTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchoolName != null">
+        user_school_name = #{userSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeName != null">
+        user_college_name = #{userCollegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCompanyName != null">
+        user_company_name = #{userCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="schoolAdmissionYear != null">
+        school_admission_year = #{schoolAdmissionYear,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dyc.userservice.entity.User">
+    update user_info
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_password = #{accountPassword,jdbcType=VARCHAR},
+      mail_address = #{mailAddress,jdbcType=VARCHAR},
+      user_true_name = #{userTrueName,jdbcType=VARCHAR},
+      user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      user_school_name = #{userSchoolName,jdbcType=VARCHAR},
+      user_college_name = #{userCollegeName,jdbcType=VARCHAR},
+      user_company_name = #{userCompanyName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      school_admission_year = #{schoolAdmissionYear,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      phonenumber = #{phonenumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.dyc.userservice.entity.User">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="account_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mail_address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_true_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_nick_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_school_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_college_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_company_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="level" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="school_admission_year" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gender" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="avatar_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gmt_create" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="gmt_modified" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="wx_openid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phonenumber" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, account_name, account_password, mail_address, user_true_name, user_nick_name, 
+    user_school_name, user_college_name, user_company_name, level, school_admission_year, 
+    gender, avatar_url, gmt_create, gmt_modified, wx_openid, phonenumber
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByAccountName" resultType="com.dyc.userservice.entity.User">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where account_name = #{account_name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dyc.userservice.entity.User">
+    insert into user_info (id, account_name, account_password, 
+      mail_address, user_true_name, user_nick_name, 
+      user_school_name, user_college_name, user_company_name, 
+      level, school_admission_year, gender, 
+      avatar_url, gmt_create, gmt_modified, 
+      wx_openid, phonenumber)
+    values (#{id,jdbcType=BIGINT}, #{accountName,jdbcType=VARCHAR}, #{accountPassword,jdbcType=VARCHAR}, 
+      #{mailAddress,jdbcType=VARCHAR}, #{userTrueName,jdbcType=VARCHAR}, #{userNickName,jdbcType=VARCHAR}, 
+      #{userSchoolName,jdbcType=VARCHAR}, #{userCollegeName,jdbcType=VARCHAR}, #{userCompanyName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT}, #{schoolAdmissionYear,jdbcType=INTEGER}, #{gender,jdbcType=VARCHAR}, 
+      #{avatarUrl,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{wxOpenid,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dyc.userservice.entity.User">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="accountPassword != null">
+        account_password,
+      </if>
+      <if test="mailAddress != null">
+        mail_address,
+      </if>
+      <if test="userTrueName != null">
+        user_true_name,
+      </if>
+      <if test="userNickName != null">
+        user_nick_name,
+      </if>
+      <if test="userSchoolName != null">
+        user_school_name,
+      </if>
+      <if test="userCollegeName != null">
+        user_college_name,
+      </if>
+      <if test="userCompanyName != null">
+        user_company_name,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="schoolAdmissionYear != null">
+        school_admission_year,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid,
+      </if>
+      <if test="phonenumber != null">
+        phonenumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailAddress != null">
+        #{mailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userTrueName != null">
+        #{userTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchoolName != null">
+        #{userSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeName != null">
+        #{userCollegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCompanyName != null">
+        #{userCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="schoolAdmissionYear != null">
+        #{schoolAdmissionYear,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxOpenid != null">
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dyc.userservice.entity.User">
+    update user_info
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        account_password = #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mailAddress != null">
+        mail_address = #{mailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userTrueName != null">
+        user_true_name = #{userTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickName != null">
+        user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSchoolName != null">
+        user_school_name = #{userSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCollegeName != null">
+        user_college_name = #{userCollegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCompanyName != null">
+        user_company_name = #{userCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="schoolAdmissionYear != null">
+        school_admission_year = #{schoolAdmissionYear,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatarUrl != null">
+        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wxOpenid != null">
+        wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dyc.userservice.entity.User">
+    update user_info
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_password = #{accountPassword,jdbcType=VARCHAR},
+      mail_address = #{mailAddress,jdbcType=VARCHAR},
+      user_true_name = #{userTrueName,jdbcType=VARCHAR},
+      user_nick_name = #{userNickName,jdbcType=VARCHAR},
+      user_school_name = #{userSchoolName,jdbcType=VARCHAR},
+      user_college_name = #{userCollegeName,jdbcType=VARCHAR},
+      user_company_name = #{userCompanyName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      school_admission_year = #{schoolAdmissionYear,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      wx_openid = #{wxOpenid,jdbcType=VARCHAR},
+      phonenumber = #{phonenumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
